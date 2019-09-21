@@ -1,0 +1,8 @@
+name: ${project.artifactId}
+main: com.mcmiddleearth.architect.watcher.ArchitectWatcherPlugin
+version: ${project.version}
+author: Eriol_Eandur
+load: STARTUP
+softdepend: [MCME-Architect]
+api-version: 1.13
+
