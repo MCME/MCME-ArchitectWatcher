@@ -49,16 +49,21 @@ public class ArchitectWatcherPlugin extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        Bukkit.getPluginManager().registerEvents(this, this);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                WatcherEvent event = new WatcherEvent();
-                //getLogger().info("polling confirmations");
-                Bukkit.getPluginManager().callEvent(event);
-            }
-        }.runTaskTimer(this, 10, getConfig().getInt("watcherTicks"));
-        getLogger().info("MCME-Architect watcher enabled!");
+        try {
+            Bukkit.getPluginManager().registerEvents(this, this);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    WatcherEvent event = new WatcherEvent();
+                    //getLogger().info("polling confirmations");
+                    Bukkit.getPluginManager().callEvent(event);
+                }
+            }.runTaskTimer(this, 10, getConfig().getInt("watcherTicks"));
+            getLogger().info("MCME-Architect watcher enabled!");
+        } catch(NoClassDefFoundError ex) {
+            getLogger().warning("Architect Plugin not found. Stopping Server...");
+            Bukkit.getServer().shutdown();
+        }
     }
     
     @Override
