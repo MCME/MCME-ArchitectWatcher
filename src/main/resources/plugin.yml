@@ -3,6 +3,6 @@ main: com.mcmiddleearth.architect.watcher.ArchitectWatcherPlugin
 version: ${project.version}
 author: Eriol_Eandur
 load: STARTUP
-softdepend: [MCME-Architect]
+depend: [MCME-Architect]
 api-version: 1.15
 
